@@ -1,17 +1,19 @@
-import React, { useCallback, useEffect, useState } from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
+import React, { useCallback, useEffect, useState } from "react"
+import ReactDOM from "react-dom"
+import * as serviceWorker from "./serviceWorker"
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   makeVar,
   createHttpLink,
-} from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
-import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
+} from "@apollo/client"
+import { setContext } from "@apollo/client/link/context"
+import { Auth0Provider, useAuth0 } from "@auth0/auth0-react"
+
+import App from "./App"
+import { config } from "./config"
+import "./index.css"
 
 export const starredVar = makeVar([]);
 
@@ -34,7 +36,7 @@ const AppWithApollo = () => {
   }, [getAccessToken]);
 
   const httpLink = createHttpLink({
-    uri: process.env.REACT_APP_GRAPHQL_URI,
+    uri: config.functions.graphql.uri,
   });
 
   const authLink = setContext((_, { headers }) => {
@@ -73,10 +75,10 @@ const AppWithApollo = () => {
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider
-      domain="grandstack.auth0.com"
-      clientId="4xw3K3cjvw0hyT4Mjp4RuOVSxvVYcOFF"
+      domain={config.auth0.domain}
+      clientId={config.auth0.clientId}
       redirectUri={window.location.origin}
-      audience="https://reviews.grandstack.io"
+      audience={config.auth0.audience}
     >
       <AppWithApollo />
     </Auth0Provider>
