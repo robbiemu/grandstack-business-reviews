@@ -3,7 +3,7 @@ import jwks from "jwks-rsa"
 
 
 export const client = jwks({
-  jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`,
+  jwksUri: `https://${process.env.REACT_APP_AUTH0_DOMAIN}/.well-known/jwks.json`,
 })
 
 const getPublicKey = (header, callback) => client.getSigningKey(
