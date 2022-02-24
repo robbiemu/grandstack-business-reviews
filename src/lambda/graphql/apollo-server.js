@@ -1,6 +1,7 @@
+import { ApolloServer } from "apollo-server-lambda"
+
 import { driver } from "./neo4j-proxy"
 import { verifyJwt } from "./jwt-proxy"
-import { ApolloServer } from "apollo-server-lambda"
 
 
 const context = async ({ event }) => {
