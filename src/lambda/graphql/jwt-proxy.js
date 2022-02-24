@@ -9,6 +9,7 @@ export const client = jwks({
 const getPublicKey = (header, callback) => client.getSigningKey(
   header.kid, 
   (err, key) => {
+    console.log(err, key, header)
     if(err) console.error('error getting Public Key', err)
     const publicKey = key?.publicKey || key?.rsaPublicKey;
     callback(null, publicKey);
