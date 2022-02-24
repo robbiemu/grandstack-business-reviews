@@ -35,10 +35,10 @@ type Mutation {
 type Business {
   businessId: ID!
   waitTime: Int! @neo4j_ignore
-  averageStars: Float!
+  averageStars: Float
     @cypher(
       statement: "MATCH (this)<-[:REVIEWS]-(r:Review) RETURN avg(r.stars)"
-    )
+    ) = 0
   recommended(first: Int = 1): [Business]
     @cypher(
       statement: """
