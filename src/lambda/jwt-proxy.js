@@ -1,5 +1,5 @@
 import * as jwt from "jsonwebtoken"
-import * as jwks from "jwks-rsa"
+import jwks from "jwks-rsa"
 
 
 export const client = jwks({
