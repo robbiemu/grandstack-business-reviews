@@ -15,4 +15,17 @@ const schema = makeAugmentedSchema({
 
 const server = factoryApolloServer({ schema })
 
-exports.handler = server.createHandler()
+// https://stackoverflow.com/questions/69710220/serverless-handler-for-apollo-server-throws-error-that-it-cant-identify-events-o
+// exports.handler = server.createHandler()
+const serverHandler = server.createHandler();
+
+exports.handler = (event, context, callback) => {
+  return serverHandler(
+    {
+      ...event,
+      requestContext: event.requestContext || {},
+    },
+    context,
+    callback
+  );
+}
