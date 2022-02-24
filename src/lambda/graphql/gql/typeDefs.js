@@ -38,7 +38,7 @@ type Business {
   averageStars: Float
     @cypher(
       statement: "MATCH (this)<-[:REVIEWS]-(r:Review) RETURN avg(r.stars)"
-    ) = 0
+    )
   recommended(first: Int = 1): [Business]
     @cypher(
       statement: """
