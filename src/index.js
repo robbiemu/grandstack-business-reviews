@@ -28,6 +28,7 @@ const AppWithApollo = () => {
       setAccessToken(token);
     } catch (err) {
       // If we want to require authentication we could call loginWithRedirect() here
+      console.error(err)
     }
   }, [getAccessTokenSilently]);
 
