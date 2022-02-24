@@ -1,4 +1,3 @@
-import { ApolloServer } from "apollo-server-lambda"
 import { makeAugmentedSchema } from "neo4j-graphql-js"
 
 import { typeDefs } from "./gql/typeDefs"
